@@ -48,6 +48,20 @@ class MovieList extends React.Component {
 
         return (
             <React.Fragment>
+
+                <div>
+                    <button
+                        className="btn btn-primary"
+                        onClick={this.increment}
+                    >Increment Number</button>
+                    <button
+                        className="btn btn-primary"
+                        onClick={this.decrement}
+                    >Decrement Number</button>
+                    <h1>{this.state.count}</h1>
+                </div>
+
+
                 <div className="col-lg-4 col-md-6 mb-4">
                     <div className="card h-100">
                         <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
