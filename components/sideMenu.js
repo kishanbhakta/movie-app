@@ -4,8 +4,13 @@ import { useState } from 'react';
 const SideMenu = () => {
     /*
     * IMPORTANT: PAY ATTENTION TO WHATS HAPPENING IN THE CODE!
+    *
+    * `useState()` :
+    * const [ stateName, setStateFunctionName ] = useState(SomeInitializeValue);
+    *
     * */
     const [ count, setCount ] = useState(0); // What is useState()?
+
     const increment = () => {
         setCount(count + 1);
     };
