@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Head from 'next/head';
 import NavBar from "../components/navbar";
 import SideMenu from "../components/sideMenu";
@@ -6,46 +6,72 @@ import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 import Footer from "../components/footer";
 
-const Home = () => (
-    <div>
-        <Head>
-            <title>Home</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous" />
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossOrigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossOrigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossOrigin="anonymous"></script>
-        </Head>
+const Home = () => {
+    /*
+    * count prop is set here for MovieList and SideMenu
+    * and set in each individual <componentName whatEverIWant={count} /> instance in
+    */
+    const [ count, setCount ] = useState(0);
 
-        <NavBar />
+    const increment = () => {
+        setCount(count + 1);
+    };
 
-        <div className="home-page">
-            <div className="container">
-                <div className="row">
+    const decrement = () => {
+        setCount(count - 1);
+    };
 
-                    <div className="col-lg-3">
-                        <SideMenu />
-                    </div>
+    return(
+        <div>
+            <Head>
+                <title>Home</title>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous" />
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossOrigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossOrigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossOrigin="anonymous"></script>
+            </Head>
+            {/*NAVBAR*/}
+            <NavBar />
 
-                    <div className="col-lg-9">
-                        <Carousel />
-                        <div className="row">
-                            <MovieList />
+            {/*BODY*/}
+            <div className="home-page">
+                <div className="container">
+                    <button className="btn btn-primary" onClick={increment} >Increment Number</button>
+                    <button className="btn btn-primary" onClick={decrement} >Decrement Number</button>
+                    <div className="row">
+
+                        <div className="col-lg-3">
+                            {/*Utilize props by setting someName={propName}*/}
+                            <SideMenu
+                                appName={"Movie DB"}
+                                clickHandler={() => { console.log("This is a message from <SideMenu /> clickHandler prop attribute");}}
+                                whatEverIWant={count}/>
                         </div>
-                    </div>
 
+                        <div className="col-lg-9">
+                            <Carousel />
+                            <div className="row">
+                                <MovieList count={count}/>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+            {/*STYLES*/}
+            <style jsx>{`
+                .home-page {
+                    padding-top: 80px;
+                }
+            `}
+            </style>
+
+            {/*FOOTER*/}
+            <Footer />
+
         </div>
-        <style jsx>{`
-            .home-page {
-                padding-top: 80px;
-            }
-        `}
-        </style>
-
-        <Footer />
-
-    </div>
-);
+    );
+};
 
 export default Home;

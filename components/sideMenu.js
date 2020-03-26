@@ -1,35 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
-
-const SideMenu = () => {
-    /*
-    * IMPORTANT: PAY ATTENTION TO WHATS HAPPENING IN THE CODE!
-    *
-    * `useState()` :
-    * const [ stateName, setStateFunctionName ] = useState(SomeInitializeValue);
-    *
-    * */
-    const [ count, setCount ] = useState(0); // What is useState()?
-
-    const increment = () => {
-        setCount(count + 1);
-    };
-
-    const decrement = () => {
-        setCount(count - 1);
-    };
+// Introduce count prop as an argument `(props)` and access the attribute by `props.attributeName`
+const SideMenu = (props) => {
     return(
         <div>
-            <h1 className="my-4">Shop Name</h1>
+            {/* clickHandler={() => { console.log("Check out the count in the console: " + {count});}} */}
+            <button onClick={props.clickHandler}>Click ME!</button>
+
+            {/* appName={"Movie DB"} */}
+            <h1 className="my-4">{props.appName}</h1>
             <div className="list-group">
                 <a href="#" className="list-group-item">Category 1</a>
                 <a href="#" className="list-group-item">Category 2</a>
                 <a href="#" className="list-group-item">Category 3</a>
             </div>
             <div>
-                <button className="btn btn-primary" onClick={increment} >Increment Number</button>
-                <button className="btn btn-primary" onClick={decrement} >Decrement Number</button>
-                <h1>{count}</h1>
+                {/* <SideMenu whatEverIWant={count}/> */}
+                <h1>{props.whatEverIWant}</h1>
             </div>
         </div>
     );
