@@ -30,19 +30,12 @@ const MOVIE_DATA = [
 
 export const getMovies = () => {
 
-    // Access Debugger and remember to `//` when !USING
-    debugger
-
     // Promise behaviors
     return  new Promise((resolve, reject) => {
 
         setTimeout(() => {
-
-            // Access Debugger and remember to `//` when !USING
-            debugger
-
             resolve(MOVIE_DATA);
-        }, 0);
+        }, 2000);
     });
 
 
