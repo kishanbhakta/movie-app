@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import NavBar from "../components/navbar";
 import SideMenu from "../components/sideMenu";
@@ -13,11 +13,26 @@ const Home = () => {
     // IMPORTANT!!!
     // Getter and Setters to transfer data from async call
     const [movies, setMovies] = useState([]);
+    const [count, setCount] = useState([]);
 
-    // Improve this because it is called every time!
-    getMovies().then((movies) => {
-        setMovies(movies); // Just calling setMovies causes an infinite loop!
-    });
+
+    /*
+    * The function passed to useEffect will run after the render is committed to the screen.
+    *
+    * - By default `effects` run after every completed render, but you can choose to fire them
+    *   only when certain values have changed
+    *
+    * -
+    */
+    useEffect(() => {
+
+        // Access Debugger and remember to `//` when !USING
+        debugger
+
+        getMovies().then((movies) => {
+            setMovies(movies); // Just calling setMovies causes an infinite loop!
+        });
+    }, [count]); // add more arg to useEffect()
 
     return(
         <div>
@@ -34,6 +49,7 @@ const Home = () => {
             {/*BODY*/}
             <div className="home-page">
                 <div className="container">
+                    <button onClick={() => setCount(count + 1)}>Click Me!</button>
                     <div className="row">
                         <div className="col-lg-3">
                             {/*Utilize props by setting someName={propName}*/}
