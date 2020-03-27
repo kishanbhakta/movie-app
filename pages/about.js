@@ -1,14 +1,29 @@
 import React from 'react';
 
-class AboutPage extends React.Component {
-    render() {
-        return (
-            <h1>Hello I am a Class Component in AboutPage</h1>
-        );
-    }
-}
+const About = (props) => {
+    const anyVar = 'This is the About Page';
+    return (
+        <div>
+            <h1>{anyVar}</h1>
+        </div>
+    );
+};
 
-export default AboutPage;
+export default About;
+
+
+
+// import React from 'react';
+//
+// class AboutPage extends React.Component {
+//     render() {
+//         return (
+//             <h1>Hello I am a Class Component in AboutPage</h1>
+//         );
+//     }
+// }
+//
+// export default AboutPage;
 
 
 
