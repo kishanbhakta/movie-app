@@ -10,31 +10,25 @@ import Footer from "../components/footer";
 import { getMovies } from "../actions";
 
 class Home extends React.Component {
-    /*
-    * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree).
-    *
-    * Instantiate Network Request from remote endpoint(s) here.
-    *
-    * You may call setState() immediately in componentDidMount().
-    * - It will happen before the browser updates the screen
-    * - User will not see the intermediate states and can cause performance issues
-    * - Assign initial state in the constructor instead
-    *
-    * */
     constructor(props) {
         super(props);
         this.state = {
-            movies: []
+            movies: [],
+            errorMessage: ''
         }
     }
     componentDidMount() {
-        getMovies().then((movies) => {
-            this.setState({movies})
-        })
+        getMovies()
+            .then((movies) => {
+                this.setState({movies});
+            })
+            .catch((error) => {
+                this.setState({errorMessage: error});
+            })
     }
 
     render() {
-        const { movies } = this.state;
+        const { movies, errorMessage } = this.state;
         return (
             <div>
                 <Head>
@@ -61,6 +55,11 @@ class Home extends React.Component {
                             <div className="col-lg-9">
                                 <Carousel />
                                 <div className="row">
+                                    { errorMessage &&
+                                        <div className="alert alert-danger">
+                                            {errorMessage}
+                                        </div>
+                                    }
                                     <MovieList movies={movies}/>
                                 </div>
                             </div>
