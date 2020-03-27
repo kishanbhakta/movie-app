@@ -29,7 +29,22 @@ const MOVIE_DATA = [
 ];
 
 export const getMovies = () => {
-    // create async!
-    // This is not real world application... just for testing!
-    return MOVIE_DATA;
-}
+
+    // Access Debugger and remember to `//` when !USING
+    debugger
+
+    // Promise behaviors
+    return  new Promise((resolve, reject) => {
+
+        setTimeout(() => {
+
+            // Access Debugger and remember to `//` when !USING
+            debugger
+
+            resolve(MOVIE_DATA);
+        }, 0);
+    });
+
+
+
+};

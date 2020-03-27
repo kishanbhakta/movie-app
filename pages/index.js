@@ -10,8 +10,24 @@ import Footer from "../components/footer";
 import { getMovies } from "../actions";
 
 const Home = () => {
+    // IMPORTANT!!!
+    // Getter and Setters to transfer data from async call
+    const [movies, setMovies] = useState([]);
+
+    // Access Debugger and remember to `//` when !USING
+    debugger
+
     // Improve this because it is called every time!
-    const movies = getMovies();
+    getMovies().then((movies) => {
+
+        // Access Debugger and remember to `//` when !USING
+        debugger
+
+        setMovies(movies); // Just calling setMovies causes an infinite loop!
+    });
+
+    // Access Debugger and remember to `//` when !USING
+    debugger
 
     return(
         <div>
