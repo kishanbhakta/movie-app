@@ -13,9 +13,7 @@ const Home = () => {
     // IMPORTANT!!!
     // Getter and Setters to transfer data from async call
     const [movies, setMovies] = useState([]);
-    const [count, setCount] = useState([]);
-
-
+    const [count, setCount] = useState(0);
     /*
     * The function passed to useEffect will run after the render is committed to the screen.
     *
@@ -25,13 +23,13 @@ const Home = () => {
     * -
     */
     useEffect(() => {
+        const fetchData = async () => {
+            const resMovies = await getMovies();
+            setMovies(resMovies);
+        };
 
-        // Access Debugger and remember to `//` when !USING
-        debugger
+        fetchData();
 
-        getMovies().then((movies) => {
-            setMovies(movies); // Just calling setMovies causes an infinite loop!
-        });
     }, [count]); // add more arg to useEffect()
 
     return(
