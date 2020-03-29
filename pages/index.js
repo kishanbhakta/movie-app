@@ -38,7 +38,15 @@ const Home = (props) => {
     );
 };
 
+/*
+*
+* getInitialProps() will be the main method and entry point for the components data
+*
+* ALL component functions will be executed from this method
+*
+* */
 Home.getInitialProps = async () => {
+    //console.log('Calling getInitialProps from home');
     const movies = await getMovies();
     return {
         movies

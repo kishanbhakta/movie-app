@@ -6,10 +6,23 @@ import Footer from '../components/footer';
 class MovieApp extends App {
 
     // TODO: execute <-- HERE --> getInitialProps and pass this data to the page
+    static async getInitialProps(appContext) {
+        /*
+        * MovieApp is acting as a wrapper class we have to call all methods associated with each component
+        *
+        * Look at _app.js and index.js for console.log to understand how this works
+        *
+        * */
+        //console.log('Calling getInitialProps from _app');
+        const appProps = await App.getInitialProps(appContext);
+
+        //destructure appProps here so you don't have to call ...appProps.pageProps in component
+        return { ...appProps };
+    };
 
     render() {
         // Component hold the page you are navigating to
-        const { Component } = this.props;
+        const { Component, pageProps } = this.props;
 
         return (
             <div>
@@ -25,7 +38,7 @@ class MovieApp extends App {
                 <NavBar />
                 {/*Component*/}
                 <div className="base-page">
-                    <Component />
+                    <Component { ...pageProps }/>
                 </div>
                 {/*FOOTER*/}
                 <Footer />
