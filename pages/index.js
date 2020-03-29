@@ -25,7 +25,6 @@ const Home = (props) => {
             {/*BODY*/}
             <div className="home-page">
                 <div className="container">
-                    <button onClick={() => setCount(count + 1)}>Click Me!</button>
                     <div className="row">
                         <div className="col-lg-3">
                             {/*Utilize props by setting someName={propName}*/}
