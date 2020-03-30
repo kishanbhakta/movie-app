@@ -19,25 +19,58 @@ const Movie = (props) => {
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
                     <h1 className="display-4">{movie.name}</h1>
-                    <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its
-                        parent.</p>
+                    <p className="lead">{ movie.description}</p>
                     <hr className="my-4"/>
-                    <p>Fill with some text, blah blah blah .</p>
-                    <a className="btn btn-primary btn-lg">? Function</a>
+                    <p>Genre: { movie.genre }</p>
+                    <a className="btn btn-primary btn-lg">Learn more</a>
                 </div>
             </div>
 
-            <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores cupiditate deserunt ducimus ea est et excepturi, facere illo ipsa magni molestiae odio officiis perspiciatis quo, reprehenderit rerum ut voluptates?</p>
+            <div className="container">
+                <p className="desc-text">{movie.longDesc}</p>
             </div>
+            <style jsx>{`
+                .desc-text {
+                    font-size: 21px;
+                }
+            `}</style>
+
+
         </div>
     );
 };
 
-Movie.getInitialProps = async () => {
-    const movie = await getMovieById('2');
+/*
+* Context
+*
+* - provides a way to pass data through the component tree without having to pass
+*   props down manually at every level.
+*
+* - is designed to share data that can be considered “global” for a tree of React
+*   components, such as the current authenticated user, theme, or preferred language.
+*
+* - Context is primarily used when some data needs to be accessible by many components at different nesting levels.
+*   Apply it sparingly because it makes component reuse more difficult.
+*
+*   If you only want to avoid passing some props through many levels,
+*   component composition[https://reactjs.org/docs/composition-vs-inheritance.html]is often a simpler solution than context.
+*
+*   {query} is the same as const { id } = context.query();
+* */
+
+Movie.getInitialProps = async (context) => {
+    // { id } : object
+    const { id } = context.query;
+
+    const movie = await getMovieById(id);
+// or this:
+//          Query Context when a query clause is passed to a query parameter
+
+// Movie.getInitialProps = async ({query}) => {
+//     const movie = await getMovieById(query.id);
 
     return { movie };
 };
+
 
 export default Movie;
