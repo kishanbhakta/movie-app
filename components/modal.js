@@ -10,7 +10,9 @@
 * */
 // import React from "../react";
 
-const Modal = () => {
+import MovieCreateForm from "./movieCreateForm";
+
+const Modal = (props) => {
     // Set current state to null
     let closeButton = null;
 
@@ -40,7 +42,7 @@ const Modal = () => {
                             </button>
                         </div>
                         <div className="modal-body">
-                            ...
+                            {props.children}
                         </div>
                         <div className="modal-footer">
                             <button ref={ele => closeButton = ele} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
