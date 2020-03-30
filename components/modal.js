@@ -1,4 +1,14 @@
-import React from "../react";
+// DO NOT IMPORT IF NOT USING
+/* ERROR MESSAGE :
+
+        Module parse failed: Unexpected token (1:0)
+        You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders
+        > %!PS-Adobe-3.0
+        | %%Creator: (ImageMagick)
+        | %%Title: (react)
+        
+* */
+// import React from "../react";
 
 const Modal = () => {
     // Set current state to null
@@ -7,17 +17,19 @@ const Modal = () => {
     const submitModal = () => {
         // submit form onClick
         alert('Submitting Modal');
-        closeButton.click()
+        closeButton.click();
     };
 
 
 
     return (
         <>
+            {/*Button trigger modal*/}
             <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Create Movie
             </button>
 
+            {/*<!-- Modal -->*/}
             <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -32,13 +44,13 @@ const Modal = () => {
                         </div>
                         <div className="modal-footer">
                             <button ref={ele => closeButton = ele} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button onClick={submitModal} type="button" className="btn btn-primary">Save changes</button>
+                            <button onClick={submitModal} className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
         </>
     )
-}
+};
 
-export default Modal
+export default Modal;
