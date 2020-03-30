@@ -4,11 +4,11 @@ import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 
 // Import getter methods from ../actions
-import { getMovies } from "../actions";
+import { getMovies, getCategories } from "../actions";
 
 const Home = (props) => {
     //console.log(JSON.stringify(props.image));
-    const { images } = props;
+    const { images, categories, movies } = props;
 
     return (
         <div>
@@ -19,6 +19,7 @@ const Home = (props) => {
                         <div className="col-lg-3">
                             {/*Utilize props by setting someName={propName}*/}
                             <SideMenu
+                                categories={categories}
                                 appName={"Movie DB"}/>
                         </div>
 
@@ -30,7 +31,7 @@ const Home = (props) => {
                                 {/*        {errorMessage}*/}
                                 {/*    </div>*/}
                                 {/*}*/}
-                                <MovieList movies={props.movies || []}/>
+                                <MovieList movies={movies || []}/>
                             </div>
                         </div>
 
@@ -51,6 +52,7 @@ const Home = (props) => {
 Home.getInitialProps = async () => {
     //console.log('Calling getInitialProps from home');
     const movies = await getMovies();
+    const categories = await getCategories();
 
     const images = movies.map(movie => ({
             id: `image-${movie.id}`,
@@ -61,7 +63,8 @@ Home.getInitialProps = async () => {
 
     return {
         movies,
-        images
+        images,
+        categories
     }
 };
 

@@ -31,6 +31,28 @@ const MOVIE_DATA = [
     }
 ];
 
+// CATEGORY_DATA
+const CATEGORY_DATA = [
+    {id: 'c-1', name: 'drama'},
+    {id: 'c-2', name: 'action'},
+    {id: 'c-3', name: 'adventure'},
+    {id: 'c-4', name: 'historical'}
+];
+
+//TODO:
+// 1. getCategories()                                           actions/index.js
+// 2. get categories in index page                              pages/index.js
+// 3. provide categories to sideMenu                            components/sideMenu.js
+// 4. in sideMenu, iterate catergories and display them         components/sideMenu.js
+
+export const getCategories = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(CATEGORY_DATA);
+        }, 50);
+    });
+};
+
 export const getMovies = () => {
     // Promise behaviors
     return  new Promise((resolve, reject) => {
