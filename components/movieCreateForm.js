@@ -23,6 +23,26 @@ const MovieCreateForm = () => {
             [name]: target.value,
         });
     };
+    
+    const handleGenreChange = (event) => {
+        //debugger
+        // destructure { options } and store in options
+        const { options } = event.target;
+        const optionsLength = options.length;
+        // Initialize value array to store captured input values to
+        let value = [];
+        // Iterate through selected genres and push to value array
+        for (let i = 0; i < optionsLength; i++) {
+            if (options[i].selected) {
+                value.push(options[i].value)
+            }
+        }
+
+        setForm({
+            ...form,
+            genre: value.toString()
+        })
+    };
 
     return (
         <>
@@ -101,6 +121,8 @@ const MovieCreateForm = () => {
                 <div className="form-group">
                     <label htmlFor="genre">Genre</label>
                     <select
+                        /*Register all clicks*/
+                        onChange={handleGenreChange}
                         multiple
                         className="form-control"
                         id="genre">
