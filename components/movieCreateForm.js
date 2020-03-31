@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
 const MovieCreateForm = (props) => {
-    // fix uncontrolled data!!!
+    // fixed uncontrolled data!!!
     const [form, setForm] = useState({
-        name: 'Some Movie',
-        description: 'Some Description'
+        name: '',
+        description: '',
+        rating: '',
+        image: '',
+        cover: '',
+        longDesc: ''
     });
 
     // event passed by React to get value and name of input
@@ -42,9 +46,7 @@ const MovieCreateForm = (props) => {
     };
 
     const submitForm = () => { // All this for contained components
-        // 1. This function will be executed 1st
-        //debugger
-        // call here function to create movie and sending as props and passing in  /components/sideMenu.js
+        // Always best to destructorize your object to create a clone and maintain integrity of data
         props.handleFormSubmit({...form});
     };
 
