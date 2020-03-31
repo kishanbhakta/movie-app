@@ -51,5 +51,15 @@
     "longDesc": "blah blah blah blah blah",
     "genre": "drama,music,adventure,historical,action",
     "id": "tsctq"
+  },
+  {
+    "name": "Testing 3",
+    "description": "Testing after merge",
+    "rating": "5",
+    "image": "https://via.placeholder.com/1650/1100",
+    "cover": "https://via.placeholder.com/1650/1100",
+    "longDesc": "cha cha cha",
+    "genre": "historical",
+    "id": "rlaej"
   }
 ]
