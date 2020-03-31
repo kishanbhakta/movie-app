@@ -33,7 +33,6 @@ const MOVIE_DATA = [
     }
 ];
 
-// CATEGORY_DATA
 const CATEGORY_DATA = [
     {id: 'c-1', name: 'drama'},
     {id: 'c-2', name: 'action'},
@@ -41,11 +40,6 @@ const CATEGORY_DATA = [
     {id: 'c-4', name: 'historical'}
 ];
 
-//TODO:
-// 1. getCategories()                                           actions/index.js
-// 2. get categories in index page                              pages/index.js
-// 3. provide categories to sideMenu                            components/sideMenu.js
-// 4. in sideMenu, iterate catergories and display them         components/sideMenu.js
 
 export const getCategories = () => {
     return new Promise((resolve, reject) => {
@@ -72,21 +66,19 @@ export const getMovieById = (id) => {
         const movie_index = MOVIE_DATA.findIndex(movie => movie.id === id);
         // Get indexed data
         const movie = MOVIE_DATA[movie_index];
-        //console.log(movie);
         // capture data
         setTimeout(() => resolve(movie), 50);
     });
 
 };
 
-// Return a Promise and push movie to MOVIE_DATA
+
 export const createMovie = (movie) => {
-    // Promise behaviors
     return  new Promise((resolve, reject) => {
-        //debugger
+        // Create ID for movie toString(base36) cut `0.` from index 2 and set length to 7
+        movie.id = Math.random().toString(36).substr(2, 7);
         MOVIE_DATA.push(movie);
         setTimeout(() => {
-            //debugger
             resolve(MOVIE_DATA);
             // reject('Cannot fetch data!');
         }, 50);
