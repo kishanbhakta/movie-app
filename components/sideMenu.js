@@ -6,16 +6,16 @@ import { createMovie } from '../actions'
 
 // Containment
 const SideMenu = (props) => {
-    const { categories } = props
-    const router = useRouter()
-    let modal = null
+    const { categories } = props;
+    const router = useRouter();
+    let modal = null;
 
     const handleCreateMovie = (movie) => {
         createMovie(movie).then((movies) => {
-            modal.closeModal()
+            modal.closeModal();
             router.push('/')
         })
-    }
+    };
 
     return (
         <div>
@@ -34,6 +34,6 @@ const SideMenu = (props) => {
             </div>
         </div>
     )
-}
+};
 
 export default SideMenu
