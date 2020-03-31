@@ -7,15 +7,16 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+const moviesData = require('./data.json')
+
 app.prepare().then(() => {
 
     const server = express();
-    // use middleware 
+
     server.use(bodyParser.json());
 
-    // Create get post patch and delete
     server.get('/api/v1/movies', (req, res) => {
-        res.json({message: 'hello fucking world'})
+        return res.json(moviesData)
     })
 
     server.post('/api/v1/movies', (req, res) => {
@@ -33,17 +34,6 @@ app.prepare().then(() => {
         const { id } = req.params.id
         res.json({message: `Deleting post of id: ${id}`})
     })
-
-//   server.get('/faq', (req, res) => {
-//     res.send(`
-//             <html>
-//                 <head></head>
-//                 <body>
-//                     <h1>Hello World</h1>
-//                 </body>
-//             </html>
-//         `)
-//     })
 
     server.get('*', (req, res) => {
     return handle(req, res)
