@@ -1,5 +1,5 @@
 import Movie from "../pages/movies/[id]";
-import axios from 'axios'
+import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3000'
 
@@ -27,15 +27,7 @@ export const getMovies = () => {
 };
 
 export const getMovieById = (id) => {
-    return  new Promise((resolve, reject) => {
-        // Find index of `id`
-        const movie_index = MOVIE_DATA.findIndex(movie => movie.id === id);
-        // Get indexed data
-        const movie = MOVIE_DATA[movie_index];
-        // capture data
-        setTimeout(() => resolve(movie), 50);
-    });
-
+    return axios.get(`${BASE_URL}/api/v1/movies/${id}`).then(res => res.data)
 };
 
 

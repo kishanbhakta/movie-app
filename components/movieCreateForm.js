@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const MovieCreateForm = (props) => {
-    // fixed uncontrolled data!!!
     const [form, setForm] = useState({
         name: '',
         description: '',
@@ -11,28 +10,20 @@ const MovieCreateForm = (props) => {
         longDesc: ''
     });
 
-    // event passed by React to get value and name of input
     const handleChange = (event) => {
         // get input
         const target = event.target;
-        // get name of input
         const name = target.name;
-        // set state
         setForm({
-            // destructure all previous values
             ...form,
-            //set new values for each object
             [name]: target.value,
         });
     };
     
     const handleGenreChange = (event) => {
-        // destructure { options } and store in options
         const { options } = event.target;
         const optionsLength = options.length;
-        // Initialize value array to store captured input values to
         let value = [];
-        // Iterate through selected genres and push to value array
         for (let i = 0; i < optionsLength; i++) {
             if (options[i].selected) {
                 value.push(options[i].value)
@@ -45,9 +36,7 @@ const MovieCreateForm = (props) => {
         })
     };
 
-    const submitForm = () => { // All this for contained components
-        // Always best to destructorize your object to create a clone and maintain integrity of data
-        // [ https://javascript.info/destructuring-assignment ]
+    const submitForm = () => { 
         props.handleFormSubmit({...form});
     };
 
@@ -55,7 +44,6 @@ const MovieCreateForm = (props) => {
         <>
             <form>
                 <div className="form-group">
-                    {/*Convert JS object or value to a JSON string*/}
                     {JSON.stringify(form)}
                     <label htmlFor="name">Name</label>
                     <input
