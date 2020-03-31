@@ -1,22 +1,18 @@
 import React from 'react';
-import { useState } from 'react';
+import { useRouter} from 'next/router'
 import Modal from './modal';
 import MovieCreateForm from "./movieCreateForm";
 import { createMovie } from "../actions";
 
 const SideMenu = (props) => {
     const { categories } = props;
-
-    //access Modal component
+    const router = useRouter()
     let modal = null;
 
-    const handleCreateMovie = (movie) => { // getting props from /components/movieCreateForm.js
-
+    const handleCreateMovie = (movie) => { 
         createMovie(movie).then((movies) => {
-            //Close modal after create
-            // Because Modal is called in this component is sideMenu is not a child in a child component and reference
-            // its props. Access the React.Component when that component is a class component   /components/modals.js
-            console.log(JSON.stringify(movies));
+            modal.closeModal()
+            router.push('/')
         })
     };
 

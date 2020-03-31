@@ -3,11 +3,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const dev = process.env.NODE_ENV !== 'production'
-
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const moviesData = require('./data.json')
+const filePath = './data.json'
+const fs = require('fs')
+const path = require('path')
+const moviesData = require(filePath)
 
 app.prepare().then(() => {
 
@@ -15,7 +17,7 @@ app.prepare().then(() => {
 
     server.use(bodyParser.json());
 
-    server.get('/api/v1/movies', (req, res) => {
+    server.get('/api/v1/movies', (res) => {
         return res.json(moviesData)
     })
 
@@ -27,11 +29,17 @@ app.prepare().then(() => {
 
     server.post('/api/v1/movies', (req, res) => {
         const movie = req.body
-        console.log(JSON.stringify(movie))
-        return res.json({...movie, createdTime: 'today', author: 'Kishan'})
-      })
+        moviesData.push(movie)
+        const pathToFile = path.join(__dirname, filePath)
+        const stringifiedData = JSON.stringify(moviesData, null, 2)
+        fs.writeFile(pathToFile, stringifiedData, (err) => {
+            if(err) {
+                return res.status(422).send(err)
+            }
+            return res.json('Movie has been successfuly added!')
+        })
 
-    
+    })
 
     server.delete('/api/v1/movies/:id', (req, res) => {
         const { id } = req.params.id
