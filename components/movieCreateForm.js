@@ -47,6 +47,7 @@ const MovieCreateForm = (props) => {
 
     const submitForm = () => { // All this for contained components
         // Always best to destructorize your object to create a clone and maintain integrity of data
+        // [ https://javascript.info/destructuring-assignment ]
         props.handleFormSubmit({...form});
     };
 
