@@ -1,30 +1,58 @@
-// Import nextjs and express frameworks
 const next = require('next');
 const express = require('express');
+const bodyParser = require('body-parser');
 
-// check if in dev or prod env localhost or cloud servers
 const dev = process.env.NODE_ENV !== 'production'
-// create express app
+
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
 
-  // create express server  
-  const server = express();
-  // Handle all request coming to the server
-  server.get('*', (req, res) => {
-    // Parse req and serve component page
-    // next.js is handling this and providing pages where we are navigating to
+    const server = express();
+    // use middleware 
+    server.use(bodyParser.json());
+
+    // Create get post patch and delete
+    server.get('/api/v1/movies', (req, res) => {
+        res.json({message: 'hello fucking world'})
+    })
+
+    server.post('/api/v1/movies', (req, res) => {
+        const movie = req.body
+        console.log(JSON.stringify(movie))
+        return res.json({...movie, createdTime: 'today', author: 'Kishan'})
+      })
+
+    server.patch('/api/v1/movies/:id', (req, res) => {
+        const { id } = req.params.id
+        res.json({message: `Updating post of id: ${id}`})
+    })
+
+    server.delete('/api/v1/movies/:id', (req, res) => {
+        const { id } = req.params.id
+        res.json({message: `Deleting post of id: ${id}`})
+    })
+
+//   server.get('/faq', (req, res) => {
+//     res.send(`
+//             <html>
+//                 <head></head>
+//                 <body>
+//                     <h1>Hello World</h1>
+//                 </body>
+//             </html>
+//         `)
+//     })
+
+    server.get('*', (req, res) => {
     return handle(req, res)
-    
-  })
+    })
 
-  // get port from env variable or assign port at 3000
-  const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3000;
 
-  server.listen(PORT, (err) => {
+    server.listen(PORT, (err) => {
     if (err) throw err
     console.log('> Ready on port ' + PORT)
-  })
+    })
 })
