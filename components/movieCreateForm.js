@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const MovieCreateForm = () => {
-
+const MovieCreateForm = (props) => {
+    // fix uncontrolled data!!!
     const [form, setForm] = useState({
         name: 'Some Movie',
         description: 'Some Description'
@@ -9,8 +9,6 @@ const MovieCreateForm = () => {
 
     // event passed by React to get value and name of input
     const handleChange = (event) => {
-        // Access Debugger and remember to `//` when !USING
-        //debugger
         // get input
         const target = event.target;
         // get name of input
@@ -25,7 +23,6 @@ const MovieCreateForm = () => {
     };
     
     const handleGenreChange = (event) => {
-        //debugger
         // destructure { options } and store in options
         const { options } = event.target;
         const optionsLength = options.length;
@@ -42,6 +39,13 @@ const MovieCreateForm = () => {
             ...form,
             genre: value.toString()
         })
+    };
+
+    const submitForm = () => { // All this for contained components
+        // 1. This function will be executed 1st
+        //debugger
+        // call here function to create movie and sending as props and passing in  /components/sideMenu.js
+        props.handleFormSubmit({...form});
     };
 
     return (
@@ -133,6 +137,12 @@ const MovieCreateForm = () => {
                         <option>action</option>
                     </select>
                 </div>
+
+                {/*Button trigger modal*/}
+                <button onClick={submitForm} className="btn btn-primary">
+                    Create
+                </button>
+
             </form>
         </>
     );

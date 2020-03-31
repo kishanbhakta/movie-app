@@ -1,3 +1,5 @@
+import Movie from "../pages/movies/[id]";
+
 const MOVIE_DATA = [
     {
         id: '1',
@@ -73,6 +75,21 @@ export const getMovieById = (id) => {
         //console.log(movie);
         // capture data
         setTimeout(() => resolve(movie), 50);
+    });
+
+};
+
+// Return a Promise and push movie to MOVIE_DATA
+export const createMovie = (movie) => {
+    // Promise behaviors
+    return  new Promise((resolve, reject) => {
+        //debugger
+        MOVIE_DATA.push(movie);
+        setTimeout(() => {
+            //debugger
+            resolve(MOVIE_DATA);
+            // reject('Cannot fetch data!');
+        }, 50);
     });
 
 };
