@@ -2,16 +2,20 @@ import React from "react";
 // Get input from url
 import { useRouter } from 'next/router';
 
-import { getMovieById } from "../../actions";
+import { getMovieById, deleteMovie } from "../../actions";
 
 
 const Movie = (props) => {
-    // call instance of router
     const router =  useRouter();
-    // This is the file name or slug name, in this case we called it `[id]`
     const { id } = router.query;
-    // Store {props} === movie.data
     const { movie } = props;
+
+    const handleDeleteMovie = (id) => {
+        deleteMovie(id).then(() => {
+            //Handle delete
+            router.push('/')
+        })
+    };
 
     // SET in /components/movieList.js
     return (
@@ -22,7 +26,8 @@ const Movie = (props) => {
                     <p className="lead">{ movie.description}</p>
                     <hr className="my-4"/>
                     <p>Genre: { movie.genre }</p>
-                    <a className="btn btn-primary btn-lg">Learn more</a>
+                    <button className="btn btn-primary btn-lg mr-1">Learn more</button>
+                    <button onClick={() => handleDeleteMovie(id)} className="btn btn-danger btn-lg">Delete</button>
                 </div>
             </div>
 
