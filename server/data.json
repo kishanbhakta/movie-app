@@ -41,5 +41,15 @@
     "longDesc": "Blah Blah ",
     "genre": "drama,music,adventure",
     "id": "d1vax"
+  },
+  {
+    "name": "Testing Movie 2",
+    "description": "Testing Testing Testing",
+    "rating": "4",
+    "image": "https://via.placeholder.com/1650x1100",
+    "cover": "https://via.placeholder.com/1650x1100",
+    "longDesc": "Blah Blah Blah",
+    "genre": "drama,music,adventure",
+    "id": "k6iaw"
   }
 ]
