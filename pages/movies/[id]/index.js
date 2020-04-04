@@ -26,7 +26,8 @@ const Movie = (props) => {
                     <hr className="my-4"/>
                     <p>Genre: { movie.genre }</p>
                     <button className="btn btn-primary btn-lg mr-1">Learn more</button>
-                    <button onClick={() => handleDeleteMovie(id)} className="btn btn-danger btn-lg">Delete</button>
+                    <button onClick={() => handleDeleteMovie(id)} className="btn btn-danger btn-lg mr-1">Delete</button>
+                    <button onClick={() => router.push(`/movies/${id}/edit`)} className="btn btn-warning btn-lg">Edit</button>
                 </div>
             </div>
 

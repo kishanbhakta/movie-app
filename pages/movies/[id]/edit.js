@@ -8,28 +8,19 @@ import { getMovieById } from "../../../actions";
 class EditMovies extends Component {
 
     // Get query server side 
-    static getInitialProps({query}) {
-        return {query}
+    static async getInitialProps({query}) {
+        const movie = await getMovieById(query.id)
+        return { movie } 
     }
 
-    state = {
-        movie: {}
-    }
-
-    componentDidMount() {
-        const{ id } = this.props.query
-        getMovieById(id).then(movie => {
-            this.setState({movie})
-        })
-    }
 
     render () {
+        const { movie } = this.props
         return (
             <>
                 <div className="container" >
                     <h1>Edit the Movie</h1>
-                    { JSON.stringify(this.state.movie) }
-                    <MovieCreateForm />
+                    <MovieCreateForm initialData={movie} /> 
                 </div>
             </>
         );

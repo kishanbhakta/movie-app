@@ -1,14 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const MovieCreateForm = (props) => {
-    const [form, setForm] = useState({
+    //
+    const [ isInitialDataLoaded, setIsInitialDataLoaded] = useState(false)
+
+    const defaultData = {
         name: '',
         description: '',
         rating: '',
         image: '',
         cover: '',
         longDesc: ''
-    });
+    }
+
+    const formData = props.initialData ? {...props.initialData} : defaultData
+
+    const [form, setForm] = useState(formData);
+
+    /**
+     * Effect Hook lets you perform side effects in function components
+     * - Data fetching
+     * - setting up subscription
+     * - manually changing the DOM in React Components
+     * 
+     * useEffect() used inside a component allows us access to any props and is in the
+     * function scope
+    */
+    // useEffect(() => {
+    //     // Update the form fields
+    //     if(props.initialData) {
+    //         setForm(props.initialData)
+    //         // to prevent useEffect from running isInitialDataLoaded from being loaded again
+    //         setIsInitialDataLoaded(true)
+    //     }
+    // }, [isInitialDataLoaded])
 
     const handleChange = (event) => {
         // get input
@@ -44,7 +69,7 @@ const MovieCreateForm = (props) => {
         <>
             <form>
                 <div className="form-group">
-                    {JSON.stringify(form)}
+                    {/* {JSON.stringify(form)} */}
                     <label htmlFor="name">Name</label>
                     <input
                         onChange={handleChange}
