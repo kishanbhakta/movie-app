@@ -3,10 +3,21 @@ import axios from 'axios'
 
 export default async (req, res) => {
 
-  const postResponse = await axios.get('https://jsonplaceholder.typicode.com/posts')
+  if (req.method === 'POST') {
+    const postData =  JSON.parse(req.body)
+    console.log(postData)
 
-  //just get 20 posts
-  const posts = postResponse.data
+    return res.json({
+      status: 'Saving Post to DB',
+      ...postData
+    })
 
-  return res.json(posts.slice(0, 20))
+  } else {
+    const postResponse = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const posts = postResponse.data
+    return res.json(posts.slice(0, 20))
+  }
+
+
+  
 }
