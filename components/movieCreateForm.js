@@ -155,8 +155,11 @@ const MovieCreateForm = (props) => {
                 </div>
 
                 {/*Button trigger modal*/}
-                <button onClick={submitForm} className="btn btn-primary">
-                    Create
+                <button
+                    onClick={submitForm}
+                    type="button"
+                    className="btn btn-primary">
+                    { props.submitButton || 'Create' }
                 </button>
 
             </form>
