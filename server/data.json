@@ -61,5 +61,15 @@
     "longDesc": "Blah Blah Blah",
     "genre": "drama,music,adventure",
     "id": "jphzc"
+  },
+  {
+    "name": "Testing Movie 4",
+    "description": "Testing Testing Testing",
+    "rating": "4.5",
+    "image": "https://via.placeholder.com/1650x1100",
+    "cover": "https://via.placeholder.com/1650x1100",
+    "longDesc": "This is a long desc",
+    "genre": "action",
+    "id": "4ywan"
   }
 ]
