@@ -15,7 +15,7 @@ const Movie = (props) => {
         })
     };
 
-    // SET in /components/movieList.js
+
     return (
         <div>
             <div className="jumbotron jumbotron-fluid">

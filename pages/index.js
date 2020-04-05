@@ -10,6 +10,10 @@ const Home = (props) => {
     //console.log(JSON.stringify(props.image));
     const { images, categories, movies } = props;
 
+    const changeCategory = category => {
+        alert(`Changing to category of : ${category}`)
+    }
+
     return (
         <div>
             {/*BODY*/}
@@ -19,6 +23,7 @@ const Home = (props) => {
                         <div className="col-lg-3">
                             {/*Utilize props by setting someName={propName}*/}
                             <SideMenu
+                                changeCategory={changeCategory}
                                 categories={categories}
                                 appName={"Movie DB"}/>
                         </div>
