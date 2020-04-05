@@ -20,7 +20,7 @@ const Home = (props) => {
             return movies
         } else {
             return movies.filter(movie => { //iterate over movies array
-                return movie.genre && movie.genre.includes(filter) //
+                return movie.genre && movie.genre.includes(filter) 
             })
         }
     }
