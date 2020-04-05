@@ -9,10 +9,20 @@ import { getMovies, getCategories } from "../actions";
 const Home = (props) => {
     //console.log(JSON.stringify(props.image));
     const { images, categories, movies } = props;
-    const [ filter, setFilter] = useState('')
+    const [ filter, setFilter] = useState('all') //default filter of all that shows all
 
     const changeCategory = category => {
         setFilter(category)
+    }
+
+    const filterMovies = movies => {
+        if (filter === 'all') {
+            return movies
+        } else {
+            return movies.filter(movie => { //iterate over movies array
+                return movie.genre && movie.genre.includes(filter) //
+            })
+        }
     }
 
     return (
@@ -39,7 +49,7 @@ const Home = (props) => {
                                 {/*        {errorMessage}*/}
                                 {/*    </div>*/}
                                 {/*}*/}
-                                <MovieList movies={movies || []}/>
+                                <MovieList movies={filterMovies(movies) || []}/>
                             </div>
                         </div>
 
