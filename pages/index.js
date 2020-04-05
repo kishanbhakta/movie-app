@@ -9,9 +9,10 @@ import { getMovies, getCategories } from "../actions";
 const Home = (props) => {
     //console.log(JSON.stringify(props.image));
     const { images, categories, movies } = props;
+    const [ filter, setFilter] = useState('')
 
     const changeCategory = category => {
-        alert(`Changing to category of : ${category}`)
+        setFilter(category)
     }
 
     return (
@@ -24,12 +25,14 @@ const Home = (props) => {
                             {/*Utilize props by setting someName={propName}*/}
                             <SideMenu
                                 changeCategory={changeCategory}
+                                activeCategory={filter}
                                 categories={categories}
                                 appName={"Movie DB"}/>
                         </div>
 
                         <div className="col-lg-9">
                             <Carousel images={images}/>
+                            <h1>Displaying {filter} movies</h1>
                             <div className="row">
                                 {/*{ errorMessage &&*/}
                                 {/*    <div className="alert alert-danger">*/}

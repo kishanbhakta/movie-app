@@ -29,7 +29,7 @@ const SideMenu = (props) => {
                         onClick={() => props.changeCategory(c.name)}
                         key={c.id}
                         href="#"
-                        className="list-group-item">{c.name}</a>
+                        className={`list-group-item ${props.activeCategory === c.name ? 'active' : ''}`}>{c.name}</a> /* active class to show which category is selected */
                 )
                 }
             </div>
